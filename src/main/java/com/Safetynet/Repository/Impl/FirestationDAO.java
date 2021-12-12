@@ -1,19 +1,19 @@
 package com.Safetynet.Repository.Impl;
 
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import com.Safetynet.Exceptions.CustomExceptions.FirestationAlreadyExistsException;
 import com.Safetynet.Exceptions.CustomExceptions.FirestationNotFoundByAddressException;
 import com.Safetynet.Exceptions.CustomExceptions.FirestationNotFoundExceptions;
 import com.Safetynet.Model.Firestations;
 import com.Safetynet.Repository.IFirestationDAO;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @Repository
 public class FirestationDAO implements IFirestationDAO{
     private List<Firestations> firestationsList;
- 
+    private static final Logger LOGGER = LogManager.getLogger(FirestationDAO.class);
 
     public List<Firestations> getFirestationsList() {
         return firestationsList;
@@ -37,7 +37,7 @@ public class FirestationDAO implements IFirestationDAO{
             throw new FirestationAlreadyExistsException(firestations.getAddress());
         }else {
             firestationsList.add(firestations);
-           
+            LOGGER.info("Firestation  ajoutée");
             return firestations;
         }
     }
@@ -48,7 +48,7 @@ public class FirestationDAO implements IFirestationDAO{
             .filter(f -> f.getAddress().equals(firestations.getAddress()))
             .findAny().orElseThrow(()-> new FirestationNotFoundByAddressException(firestations.getAddress()));
         firestationsList.set(firestationsList.indexOf(firestationToUpdate),firestations);
-        
+        LOGGER.info("Firestation modifiée");
         return firestations;
     }
 
@@ -58,6 +58,6 @@ public class FirestationDAO implements IFirestationDAO{
                 .filter(f -> f.getAddress().equals(firestations.getAddress()))
                 .findAny().orElseThrow(() -> new FirestationNotFoundByAddressException(firestations.getAddress()));
         firestationsList.remove(firestationToDelete);
-        
+        LOGGER.info("Firestation  supprimée");
     }
 }

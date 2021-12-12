@@ -1,21 +1,20 @@
 package com.Safetynet.Repository.Impl;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 import com.Safetynet.Exceptions.CustomExceptions.PersonAlreadyExistsException;
 import com.Safetynet.Exceptions.CustomExceptions.PersonNotFoundException;
 import com.Safetynet.Model.Person;
 import com.Safetynet.Repository.IPersonDAO;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
-
 @Repository
 public class PersonDAO implements IPersonDAO{
     private List<Person> personList;
 
-   
+    private static final Logger LOGGER = LogManager.getLogger(PersonDAO.class);
 
 
     public List<Person> getPersonList() {
@@ -39,7 +38,7 @@ public class PersonDAO implements IPersonDAO{
             throw new PersonAlreadyExistsException(person.getFirstName(),person.getLastName());
         }else {
             personList.add(person);
-         
+            LOGGER.info("personne ajoutée");
             return person;
         }
     }
@@ -50,7 +49,7 @@ public class PersonDAO implements IPersonDAO{
                 .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
                 .findAny().orElseThrow(()-> new PersonNotFoundException(person.getFirstName(),person.getLastName()));
         personList.set(personList.indexOf(personToUpdate), person);
-     
+        LOGGER.info("person modifiée");
         return person;
     }
 
@@ -60,6 +59,7 @@ public class PersonDAO implements IPersonDAO{
                 .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
                 .findAny().orElseThrow(()-> new PersonNotFoundException(person.getFirstName(),person.getLastName()));
             personList.remove(personToDelete);
+            LOGGER.info("person supprimée ");
           
     }
 }
