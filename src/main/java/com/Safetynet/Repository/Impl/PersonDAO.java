@@ -1,15 +1,13 @@
 package com.Safetynet.Repository.Impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import com.Safetynet.Exceptions.CustomExceptions.PersonAlreadyExistsException;
 import com.Safetynet.Exceptions.CustomExceptions.PersonNotFoundException;
 import com.Safetynet.Model.Person;
 import com.Safetynet.Repository.IPersonDAO;
-
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class PersonDAO implements IPersonDAO{
