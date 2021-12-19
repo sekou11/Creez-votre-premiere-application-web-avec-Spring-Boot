@@ -32,7 +32,7 @@ class PersonDAOTest {
 				GeneralData.getMedicalRecordsList());
 		((Dataloader) dataloader).setDataFile(dataTest);
 	}
-
+ 
 	@Test
 	void testFindByName() {
 		// GIVEN
