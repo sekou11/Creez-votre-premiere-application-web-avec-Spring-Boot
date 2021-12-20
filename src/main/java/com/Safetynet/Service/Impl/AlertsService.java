@@ -7,12 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-=======
 
->>>>>>> test
 import com.Safetynet.Model.Person;
 import com.Safetynet.Model.Specific.ChildAlert;
 import com.Safetynet.Model.Specific.Fire;
@@ -34,7 +29,7 @@ public class AlertsService implements IAlertsService {
 
     @Autowired
     MedicalRecordService medicalRecordService;
-    private static final Logger LOGGER = LogManager.getLogger(AlertsService.class);
+    
     
 
 	public void setPersonService(PersonService personService) {
@@ -56,10 +51,9 @@ public class AlertsService implements IAlertsService {
 		 LOGGER.debug("Loop started on personService.findAll()");
 		for (Person person : personService.findAll()) {
 			if (person.getCity().equals(city)) {
-<<<<<<< HEAD
-				LOGGER.debug("personCity :" +city+" matches "+person.getCity());
-=======
->>>>>>> test
+
+
+
 				emailList.add( person.getEmail() );
 			} 
 		}
@@ -103,39 +97,7 @@ public class AlertsService implements IAlertsService {
 	@Override
 	public ChildAlert getChildsAndAdultsByAddress(String address) {
 		LOGGER.debug("Initialize adults & Childrenlists");
-<<<<<<< HEAD
-		List<PersonWithNameAge>childrenList= new ArrayList<PersonWithNameAge>();
-		List<PersonWithNameAge>adultsrenList= new ArrayList<PersonWithNameAge>();
-		
-		 LOGGER.debug("start loop on personService.findAll()");
-		for (Person person : personService.findAll()) {
-			
-			LOGGER.debug("Person address" + person.getAddress()+ "is matching");
-			if (person.getAddress().equals(address)) {
-				PersonWithNameAge personToAdded= new PersonWithNameAge(
-						person.getFirstName(), 
-						person.getLastName(),
-						medicalRecordService.findAgeFromName(person.getFirstName(), person.getLastName()));
-				if (personToAdded.getAge()<18 ) {
-					  LOGGER.debug("Add person to childrenList ");
-					childrenList.add(personToAdded);
-					
-				} else if(personToAdded.getAge()>18) {
-					LOGGER.debug("Add person to adultsList ");
-                   adultsrenList.add(personToAdded);
-				}
-			}
-			
-		}
-		if (childrenList.size()!=0) {
-			 LOGGER.debug("return ChildAlert");
-			return new ChildAlert(childrenList,adultsrenList);
-		} else {
-			LOGGER.debug("no childrens in the list, return empty ChildAlert");
-			return new  ChildAlert();
-		}
-		
-=======
+
         List<PersonWithNameAge> adultsList = new ArrayList<>();
         List<PersonWithNameAge> childrenList = new ArrayList<>();
 
@@ -160,7 +122,7 @@ public class AlertsService implements IAlertsService {
             LOGGER.debug("no childrens in the list, return empty ChildAlert");
             return new ChildAlert();
         }
->>>>>>> test
+
 		
 		
 	}
@@ -206,34 +168,7 @@ public class AlertsService implements IAlertsService {
 
 	@Override
 	public List<Flood> getPersonsAndAddressByFirestationNumber(List<Integer> firestationNumberList) {
-<<<<<<< HEAD
-		
-		List<Flood>floodList= new ArrayList<Flood>();
-		
-		for (Integer fireStationNumberList : firestationNumberList) {
-			
-			String firestationAddress = firestationService.findAddressByNumber(fireStationNumberList);
-			 LOGGER.debug("FirestationAddress is " +firestationAddress);
-			 
-			 List<PersonWithNameAgeMedRecs>personWithNameAgeMedRecs= new ArrayList<PersonWithNameAgeMedRecs>();
-			 for (Person person : personService.findAll()) {
-				if (person.getAddress().equals(firestationAddress)) {
-					
-					 LOGGER.debug("Person address match ! "+ person.getAddress());
-					personWithNameAgeMedRecs.add(new PersonWithNameAgeMedRecs
-							(person.getFirstName(),
-							person.getLastName(),
-							person.getPhone(),
-							medicalRecordService.findAgeFromName(person.getFirstName(), person.getLastName()),
-							medicalRecordService.findMedicationsByName(person.getFirstName(), person.getLastName()),
-							medicalRecordService.findAllergiesByName(person.getFirstName(), person.getLastName())));
-				}
-			}
-			 floodList.add(new Flood(firestationAddress,personWithNameAgeMedRecs));
-			 LOGGER.debug("Flood : "+new Flood(firestationAddress,personWithNameAgeMedRecs)+" added to floodList");
-		}
-		return floodList;
-=======
+
 		List<Flood> floodList = new ArrayList<>();
 
         for(Integer firestationNumber : firestationNumberList){
@@ -258,7 +193,7 @@ public class AlertsService implements IAlertsService {
             LOGGER.debug("Flood : "+new Flood(firestationAddress,personWithNameAgeMedRecsList)+" added to floodList");
         }
         return floodList;
->>>>>>> test
+
 	}
 
 	@Override
