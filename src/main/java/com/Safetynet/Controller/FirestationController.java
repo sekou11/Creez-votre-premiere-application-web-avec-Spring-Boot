@@ -27,7 +27,7 @@ public class FirestationController {
 	        return new ResponseEntity<>(firestationService.findAll(), HttpStatus.OK);
 	    }
 
-	    @GetMapping(value="/firestations/{stationNumber}")
+	    @GetMapping(value="/firestation/{stationNumber}")
 	    public ResponseEntity<Firestations> getFirestationsByNumber(@PathVariable Integer stationNumber){
 	    	LOGGER.info("Requête GET ONE firestion à /firestations/{stationNumber}");
 	        if(stationNumber == null){
