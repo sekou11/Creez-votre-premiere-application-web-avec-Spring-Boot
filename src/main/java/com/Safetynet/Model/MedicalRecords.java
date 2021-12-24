@@ -84,4 +84,6 @@ public class MedicalRecords {
     public int hashCode() {
         return Objects.hash(firstName, lastName, birthdate, medications, allergies);
     }
+
+	
 }

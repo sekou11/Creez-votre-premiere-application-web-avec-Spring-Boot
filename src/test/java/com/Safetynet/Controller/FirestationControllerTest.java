@@ -37,7 +37,21 @@ class FirestationControllerTest {
 
 	@Test
 	void testGetAllFirestations() throws Exception {
+		
 		mockMvc.perform(get("/firestations")).andExpect(status().isOk());
+	}
+	
+	
+	
+	@Test
+	void testNullFirestations() throws Exception {
+		FirestationController fc =new FirestationController();
+		fc.setFirestationService(null);
+		fc.addFirestation(null);
+		fc.editFirestation(null);
+		fc.deleteFirestation(null);	
+		fc.getFirestationsByNumber(null);
+		
 	}
 
 	@Test

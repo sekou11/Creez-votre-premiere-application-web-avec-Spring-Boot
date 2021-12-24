@@ -5,10 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import com.Safetynet.Exceptions.CustomExceptions.PersonAlreadyExistsException;
 import com.Safetynet.Exceptions.CustomExceptions.PersonNotFoundException;
 import com.Safetynet.Model.Person;
@@ -38,7 +34,8 @@ public class PersonDAO implements IPersonDAO{
 
     @Override
     public Person addPerson(Person person) {
-        if (personList.stream().anyMatch(p->p.getFirstName().equals(person.getFirstName())&&p.getLastName().equals(person.getLastName()))) {
+        if (personList.stream().
+        	anyMatch(p->p.getFirstName().equals(person.getFirstName())&&p.getLastName().equals(person.getLastName()))) {
             throw new PersonAlreadyExistsException(person.getFirstName(),person.getLastName());
         }else {
             personList.add(person);
