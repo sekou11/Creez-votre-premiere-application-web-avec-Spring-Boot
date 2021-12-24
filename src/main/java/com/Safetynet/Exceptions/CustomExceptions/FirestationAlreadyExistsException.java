@@ -8,7 +8,5 @@ public class FirestationAlreadyExistsException extends RuntimeException{
         this.firestationAddress = firestationAddress;
     }
 
-    public String getFirestationAddress() {
-        return firestationAddress;
-    }
+    
 }

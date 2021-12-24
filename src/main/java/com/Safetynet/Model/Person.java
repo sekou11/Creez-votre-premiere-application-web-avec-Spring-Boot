@@ -101,8 +101,5 @@ public class Person {
         return Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address) && Objects.equals(city, person.city) && Objects.equals(zip, person.zip) && Objects.equals(phone, person.phone) && Objects.equals(email, person.email);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, address, city, zip, phone, email);
-    }
+   
 }

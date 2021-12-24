@@ -8,7 +8,5 @@ public class FirestationNotFoundExceptions extends RuntimeException{
         this.firestationNumber = firestationNumber;
     }
 
-    public Integer getFirestationNumber() {
-        return firestationNumber;
-    }
+   
 }

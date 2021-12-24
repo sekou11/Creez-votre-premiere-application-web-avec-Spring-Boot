@@ -10,11 +10,5 @@ public class PersonAlreadyExistsException extends RuntimeException{
         this.lastName = lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
+  
 }
