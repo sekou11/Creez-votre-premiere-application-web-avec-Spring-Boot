@@ -46,8 +46,5 @@ public class Firestations {
         return station == that.station && Objects.equals(address, that.address);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(address, station);
-    }
+   
 }

@@ -38,17 +38,7 @@ class MedicalRecordsControllerTest {
         }
     }
     
-    @Test
-	void testNullMedicalRecords() throws Exception {
-		
-		MedicalRecordsController mr = new MedicalRecordsController();
-		mr.setMedicalRecordService(null);
-		mr.addMedicalRecord(null);
-		mr.editMedicalRecord(null);
-		mr.deleteMedicalRecord(null);
-		
-		
-	}
+  
     @Test
 	void testGetAllMedicalRecords() throws Exception {
 		mockMvc.perform(get("/medicalRecords"))

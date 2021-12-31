@@ -45,7 +45,7 @@ public class FirestationDAO implements IFirestationDAO{
     @Override
     public Firestations editFirestations(Firestations firestations) {
         Firestations firestationToUpdate = firestationsList.stream()
-            .filter(f -> f.getAddress().equals(firestations.getAddress()))
+            .filter(f -> f.getAddress().equalsIgnoreCase(firestations.getAddress()))
             .findAny().orElseThrow(()-> new FirestationNotFoundByAddressException(firestations.getAddress()));
         firestationsList.set(firestationsList.indexOf(firestationToUpdate),firestations);
         LOGGER.info("Firestation modifiée");

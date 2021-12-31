@@ -33,54 +33,44 @@ public class MedicalRecordsController {
 	    
 	    
 	    @GetMapping(value="/medicalRecords")
-	    public ResponseEntity<List<MedicalRecords>> getAllMedicalRecords(){
+	    public List<MedicalRecords> getAllMedicalRecords(){
 	        LOGGER.info("Requête Get All medicalRecords à /medicalRecords");
-	        return new ResponseEntity<>(medicalRecordService.findAll(),HttpStatus.OK);
+	        return medicalRecordService.findAll();
 	    }
 
 	    @GetMapping(value ="/medicalRecord")
-	    public ResponseEntity<MedicalRecords> getMedicalRecordByName(@RequestParam String firstName,@RequestParam String lastName){
+	    public MedicalRecords getMedicalRecordByName(@RequestParam String firstName,@RequestParam String lastName){
 	        LOGGER.info("Requête GET By FirstName and lastName à /medicalRecord");
-	        return new ResponseEntity<>(medicalRecordService.findByName(firstName, lastName), HttpStatus.OK);
+	        return medicalRecordService.findByName(firstName, lastName);
 	    }
 
 	    @PostMapping(value = "/medicalRecord", consumes = "application/json", produces = "application/json")
 	    public ResponseEntity<String> addMedicalRecord(@RequestBody MedicalRecords medicalRecords){
 	        LOGGER.info("Requête Post  à /medicalRecord");
-	        if(medicalRecords == null) {
-	            LOGGER.error("pas de body fourni");
-	            return new ResponseEntity<>("Content is empty", HttpStatus.NO_CONTENT);
-	        }
-	        else {
-	            medicalRecordService.addMedicalRecords(medicalRecords);
+	      
+	       
+	             medicalRecordService.addMedicalRecords(medicalRecords);
 	            return new ResponseEntity<>("Content added successfully", HttpStatus.CREATED);
-	        }
+	        
 	    }
 
 	    @PutMapping(value = "/medicalRecord", consumes = "application/json", produces = "application/json")
-	    public ResponseEntity<String> editMedicalRecord(@RequestBody MedicalRecords medicalRecords){
+	    public MedicalRecords editMedicalRecord(@RequestBody MedicalRecords medicalRecords){
 	        LOGGER.info("Requête Put  à /medicalRecord");
-	        if(medicalRecords == null) {
-	            LOGGER.error("pas de body fourni");
-	            return new ResponseEntity<>("Content is empty", HttpStatus.NO_CONTENT);
-	        }
-	        else {
-	            medicalRecordService.editMedicalRecords(medicalRecords);
-	            return new ResponseEntity<>("Content updated successfully", HttpStatus.OK);
-	        }
+	       
+	        
+	           MedicalRecords medicalRecordUpdated= medicalRecordService.editMedicalRecords(medicalRecords);
+	            return medicalRecordUpdated;
+	        
 
 	    }
 	    @DeleteMapping(value = "/medicalRecord", consumes = "application/json")
-	    public ResponseEntity<String> deleteMedicalRecord(@RequestBody MedicalRecords medicalRecords){
+	    public void deleteMedicalRecord(@RequestBody MedicalRecords medicalRecords){
 	        LOGGER.info("Requête Delete reçue à /medicalRecord");
-	        if(medicalRecords == null) {
-	            LOGGER.error("pas de body fourni");
-	            return new ResponseEntity<>("Content is empty", HttpStatus.NO_CONTENT);
-	        }
-	        else {
-	            medicalRecordService.deleteMedicalRecords(medicalRecords);
-	            return new ResponseEntity<>("Content deleted successfully", HttpStatus.OK);
-	        }
+	       
+	        
+	         medicalRecordService.deleteMedicalRecords(medicalRecords);
+	            
 	    }
 
 }

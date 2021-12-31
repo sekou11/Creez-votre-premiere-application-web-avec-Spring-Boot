@@ -1,7 +1,6 @@
 package com.Safetynet.Model;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Data {
     private List<Person> persons;
@@ -50,16 +49,5 @@ public class Data {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Data)) return false;
-        Data data = (Data) o;
-        return Objects.equals(persons, data.persons) && Objects.equals(firestations, data.firestations) && Objects.equals(medicalrecords, data.medicalrecords);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(persons, firestations, medicalrecords);
-    }
+  
 }

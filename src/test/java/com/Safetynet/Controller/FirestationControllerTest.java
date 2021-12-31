@@ -38,25 +38,17 @@ class FirestationControllerTest {
 	@Test
 	void testGetAllFirestations() throws Exception {
 		
-		mockMvc.perform(get("/firestations")).andExpect(status().isOk());
+		mockMvc.perform(get("/firestations"))
+		.andExpect(status().isOk());
 	}
 	
 	
 	
-	@Test
-	void testNullFirestations() throws Exception {
-		FirestationController fc =new FirestationController();
-		fc.setFirestationService(null);
-		fc.addFirestation(null);
-		fc.editFirestation(null);
-		fc.deleteFirestation(null);	
-		fc.getFirestationsByNumber(null);
-		
-	}
 
 	@Test
 	void testGetFirestationsByNumber() throws Exception {
-		mockMvc.perform(get("/firestation/3")).andExpect(status().isOk());
+		mockMvc.perform(get("/firestation/3"))
+		.andExpect(status().isOk());
 	}
 
 	@Test
@@ -68,14 +60,15 @@ class FirestationControllerTest {
 
 	@Test
 	void testEditFirestation() throws Exception {
-		mockMvc.perform(put("/firestation").contentType(MediaType.APPLICATION_JSON).content(asJsonString(firestations)))
+		mockMvc.perform(put("/firestation")
+				.contentType(MediaType.APPLICATION_JSON).content(asJsonString(firestations)))
 				.andExpect(status().isOk());
 	}
 
 	@Test
 	void testDeleteFirestation() throws Exception {
-		mockMvc.perform(
-				delete("/firestation").contentType(MediaType.APPLICATION_JSON).content(asJsonString(firestations)))
+		mockMvc.perform(delete("/firestation")
+				.contentType(MediaType.APPLICATION_JSON).content(asJsonString(firestations)))
 				.andExpect(status().isOk());
 	}
 

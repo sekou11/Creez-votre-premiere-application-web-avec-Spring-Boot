@@ -34,28 +34,23 @@ class PersonControllerTest {
 		}
 	}
 
-	@Test
-	void testNullPerson() throws Exception {
-		PersonController pc = new PersonController();
-
-		pc.setPersonService(null);
-
-		pc.addPerson(null);
-		pc.editPerson(null);
-		pc.deletePerson(null);
-
-	}
+	
 
 	@Test
 	void testGetAllPersons() throws Exception {
-		mockMvc.perform(get("/persons")).andExpect(status().isOk());
+		mockMvc.perform(get("/persons"))
+		.andExpect(status().isOk());
 	}
 
 	@Test
 	void testGetPersonByName() throws Exception {
-		mockMvc.perform(get("/person").param("firstName", "John").param("lastName", "Boyd")).andExpect(status().isOk());
+		mockMvc.perform(get("/person").param("firstName", "John")
+				.param("lastName", "Boyd"))
+		        .andExpect(status().isOk());
 	}
 
+
+	
 	@Test
 	void testAddPerson() throws Exception {
 		mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON).content(asJsonString(person)))
@@ -64,13 +59,16 @@ class PersonControllerTest {
 
 	@Test
 	void testEditPerson() throws Exception {
-		mockMvc.perform(put("/person").contentType(MediaType.APPLICATION_JSON).content(asJsonString(person)))
+		mockMvc.perform(put("/person")
+				.contentType(MediaType.APPLICATION_JSON).
+				content(asJsonString(person)))
 				.andExpect(status().isOk());
 	}
 
 	@Test
 	void testDeletePerson() throws Exception {
-		mockMvc.perform(delete("/person").contentType(MediaType.APPLICATION_JSON).content(asJsonString(person)))
+		mockMvc.perform(delete("/person")
+				.contentType(MediaType.APPLICATION_JSON).content(asJsonString(person)))
 				.andExpect(status().isOk());
 	}
 

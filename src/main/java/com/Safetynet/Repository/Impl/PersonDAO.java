@@ -47,9 +47,11 @@ public class PersonDAO implements IPersonDAO{
     @Override
     public Person editPerson(Person person) {
         Person personToUpdate = personList.stream()
+        		
                 .filter(p -> p.getFirstName().equals(person.getFirstName()) && p.getLastName().equals(person.getLastName()))
                 .findAny().orElseThrow(()-> new PersonNotFoundException(person.getFirstName(),person.getLastName()));
         personList.set(personList.indexOf(personToUpdate), person);
+        
         LOGGER.info("person modifiée");
         return person;
     }

@@ -80,10 +80,7 @@ public class MedicalRecords {
         return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(birthdate, that.birthdate) && Objects.equals(medications, that.medications) && Objects.equals(allergies, that.allergies);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, birthdate, medications, allergies);
-    }
+   
 
 	
 }
