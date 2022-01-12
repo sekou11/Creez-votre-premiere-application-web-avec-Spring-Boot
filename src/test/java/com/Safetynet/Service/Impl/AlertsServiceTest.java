@@ -97,18 +97,20 @@ class AlertsServiceTest {
 		// THEN
 		assertEquals(expected, actual);
 	}
-
 	@Test
 	void testGetPersonsAndAddressByFirestationNumber() {
-		// GIVEN
-		List<Integer> firestationNumberList=new ArrayList<Integer>(Arrays.asList(2,3));
-		 List<Flood>expected = AlertsServiceTestData.getFloodDataList();
-		// WHEN
-		
-		List<Flood>actual = alertsService.getPersonsAndAddressByFirestationNumber(firestationNumberList);
-		// THEN
-		assertEquals(expected, actual);
+		//Given
+        List<Integer> firestationNumberList = new ArrayList<>(Arrays.asList(2,3));
+    List<Flood> expected = AlertsServiceTestData.getFloodDataList();
+       //When
+        List<Flood> result = alertsService.getPersonsAndAddressByFirestationNumber(firestationNumberList);
+        //Then
+        assertEquals(expected,result);
 	}
+
+	
+	 
+	
 
 	@Test
 	void testGetFullInfoPersonByName() {

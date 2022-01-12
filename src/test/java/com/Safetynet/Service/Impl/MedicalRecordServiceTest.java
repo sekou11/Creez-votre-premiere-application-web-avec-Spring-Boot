@@ -49,7 +49,7 @@ class MedicalRecordServiceTest {
 		String firstName = "Felicia";
 		String lastName = "Boyd";
 
-		Integer expected = 35;
+		Integer expected = 36;
 		// WHEN
 		Integer result;
 		result = medicalRecordService.findAgeFromName(firstName, lastName);
